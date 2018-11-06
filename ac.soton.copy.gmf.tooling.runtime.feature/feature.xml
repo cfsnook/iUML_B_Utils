@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="ac.soton.copy.gmf.tooling.runtime.feature"
+      label="%featureName"
+      version="0.0.1.release"
+      provider-name="%featureVendor"
+      plugin="ac.soton.iumlb.branding"
+      license-feature="org.rodinp.license"
+      license-feature-version="1.0.0.release">
+
+   <description>
+      %featureDescription
+   </description>
+
+   <copyright>
+      %featureCopyright
+   </copyright>
+
+   <url>
+      <update label="%updateSiteName" url="http://rodin-b-sharp.sourceforge.net/updates"/>
+   </url>
+
+   <requires>
+      <import plugin="org.eclipse.core.runtime" version="3.7.0" match="compatible"/>
+      <import plugin="org.eclipse.core.expressions" version="3.4.300" match="compatible"/>
+      <import plugin="org.eclipse.emf.ecore" version="2.7.0" match="compatible"/>
+      <import plugin="org.eclipse.emf.edit.ui" version="2.7.0" match="compatible"/>
+      <import plugin="org.eclipse.gef" version="3.7.0" match="compatible"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.commands.core" version="1.4.0" match="compatible"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui" version="1.5.0" match="compatible"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.properties" version="1.4.2" match="compatible"/>
+      <import plugin="org.eclipse.ocl.ecore" version="3.1.1" match="compatible"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.ui.render" version="1.4.1" match="compatible"/>
+      <import plugin="org.eclipse.draw2d"/>
+      <import plugin="org.eclipse.gmf.runtime.common.ui.services"/>
+      <import plugin="org.eclipse.gmf.runtime.emf.type.core"/>
+      <import plugin="org.eclipse.gmf.runtime.diagram.core"/>
+      <import plugin="org.eclipse.ocl"/>
+      <import plugin="org.eclipse.gmf.runtime.notation"/>
+   </requires>
+
+   <plugin
+         id="org.eclipse.gmf.tooling.runtime"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

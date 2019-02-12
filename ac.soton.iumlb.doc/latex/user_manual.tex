@@ -1,0 +1,79 @@
+\documentclass[a4paper,10pt]{book}
+\usepackage{import}
+\usepackage{standalone}
+\usepackage{url}
+\usepackage{plastex}
+\usepackage{datetime}
+\usepackage{emptypage}
+\usepackage{hyperref}
+\usepackage{iumlb}
+
+\usepackage{subfig}
+\usepackage{longtable}
+\usepackage{ltcaption}
+
+\usepackage{multirow}
+
+% Macros for iUML-B, BMotionStudio, ProB
+\newcommand{\EVENTB}{Event-B\xspace}
+\newcommand{\IUMLB}{iUML-B} %\xspace}
+\newcommand{\PROB}{ProB\xspace}
+%\newcommand{\BMS}{BMotionStudio\xspace}
+
+%\usepackage[T1]{fontenc}
+%\usepackage{beramono}
+%\usepackage[latin1]{inputenc}
+
+% Title
+\title{iUML-B User Manual and Tutorial}
+\author{Colin Snook}
+\newdate{iUML-BManualDate}{25}{09}{2015}
+\date{%
+  Version 0.0.1 rc1\\%
+  \displaydate{iUML-BManualDate}%
+}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\chapter*{Preface}
+\subimport*{./}{preface}
+
+\part{iUML-B Modelling Language}
+
+\chapter{iUML-B User Manual}
+\label{cha:iuml-b-user}
+\subimport*{iuml-b/}{iuml-b-user_manual.tex}
+
+\chapter{iUML-B Class Diagrams User Manual}
+\label{cha:iuml-b-classdiagram-user}
+\subimport*{iuml-b-classdiagrams/}{iuml-b-classdiagrams-user_manual.tex}
+
+\chapter{iUML-B State-machine Diagrams User Manual}
+\label{cha:iuml-b-statemachines-user}
+\subimport*{iuml-b-statemachines/}{iuml-b-statemachines-user_manual.tex}
+
+
+\part{Validation}
+
+\chapter{iUML-B Simulator}
+\label{cha:iuml-b-simulator}
+\subimport*{iuml-b-simulator/}{iuml-b-simulator-user_manual.tex}
+
+
+\part{Miscellaneous}
+\label{part:miscellaneous}
+
+\chapter{iUML-B Software User Agreement}
+\label{cha:iuml-b-software-user-agreement}
+\input{iuml-b-user_agreement}
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

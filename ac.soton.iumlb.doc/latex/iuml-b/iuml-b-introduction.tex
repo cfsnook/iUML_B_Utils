@@ -1,0 +1,121 @@
+\section{Introduction}
+\label{sec:iumlb-introduction}
+
+iUML-B provides a diagrammatic modelling notation for Event-B in the form of state-machines and class-diagrams. The diagrammatic elements are contained within an Event-B model and generate or contribute to parts of it. For example a state-machine will automatically generate the Event-B data elements (sets, constants, axioms, variables, and invariants) to implement the states, and contribute additional guards and actions to existing events. iUML-B Class diagrams provide a way to visually model data relationships.  Classes, attributes and associations are linked to Event-B data elements (carrier sets, constants, or variables) and generate constraints on those elements.  In iUML-B class diagrams, a class represents some set of instances and the class may be used to show relationships with other classes. Usually the set of instances is given by an Event-B data element, but in some scenarios it is useful to construct a set using an expression as the class name.
+
+
+%\iUMLB~\cite{said15:umlbSosym,snook14:iumlbStatem,snook06umlbTosem} provides a diagrammatic modelling notation for \eventB including state-machines and class diagrams. The diagrammatic models are contained within an \eventB machine and generate or contribute to parts of it. For example a state-machine will automatically generate the \eventB data elements (sets, constants, axioms, variables, and invariants) to implement the states while \eventB events are expected to already exist to represent the transitions. Transitions contribute further guards and actions representing their state change, to the events that they elaborate. An existing \EventB set may be associated with the state-machine to define its instances. In this case the state-machine is `lifted' so that it has a value for every instance of the associated set. State-machines are typically refined by adding nested state-machines to states.
+%
+%Class diagrams provide a way to visually model data relationships. Classes, attributes and associations are linked to \EventB data elements (carrier set, constant, or variable) and generate constraints on those elements. For the \VLAN we use class diagrams extensively to model the sets of entities and their relationships and we use state-machines to constrain the sequences of events and to declare state dependant invariant properties.
+%\begin{figure}[!t]
+%	\centering
+%	\subfloat[Class diagram]{
+%		\includegraphics[width=0.5\textwidth]{figures/iumlb-CD}
+%		\label{fig:iumlb-cd}
+%	}
+%	\hspace{2em}
+%	\subfloat[State-machine]{
+%		\includegraphics[width=0.3\textwidth]{figures/iumlb-SM}
+%		\label{fig:iumlb-sm}
+%	}
+%	\caption{Example \iUMLB diagrams}
+%	\label{fig:iumlb}
+%\end{figure}
+%
+%
+%Figure~\ref{fig:iumlb} shows an abstract example of an \iUMLB model to illustrate the features we have used in the VLAN. We give the corresponding translation into \EventB in Figure~\ref{fig:eventb-translation}.  In Figure~\ref{fig:iumlb-cd}, there are three classes; \BCLSi, \BCLSii, which elaborate carrier sets, and \BCLSiii, which is a sub-class of \BCLSi and elaborates a variable.  An \emph{attribute} or \emph{association} of a class can have a combination of the following properties: \emph{surjective}, \emph{injective}, \emph{total}, and \emph{functional}.  Attributes \Battri of \BCLSi and \Battriii of \BCLSiii are total and functional, while \Battrii of \BCLSii is functional. An injective association \Brel defined between \BCLSi and \BCLSii elaborates a constant. Figure~\ref{fig:iumlb-sm} shows an example of a state-machine, which is lifted to the carrier set \BCLSi for its instances.  % (This is done in the diagram's properties view which is not shown).
+%This is also the instances set for the class \BCLSi and a state of the state-machine is named after its variable sub-class, \BCLSiii. Further sub-states \BSi and \BSii are modelled as variable subsets of \BCLSiii. The state of an instance is represented by its membership of these sets. The state-machine transitions are linked to the same events as the methods of \BCLSiii. Hence the state-machine constrains the invocation of class methods for a particular instance of the class. The contextual instance is modelled as a parameter \BthisCLSiii which can be used in additional guards and actions in both the class diagram and the state-machine.
+%\begin{figure}[!t]
+%	\centering
+%	\begin{Bcode}
+%		{
+%			{$\carriersets{\BCLSi, \BCLSii}$ \Bhspace $\constants{\Battri, \Battrii, \Brel}$} 
+%			\Bhspace
+%			{$\axioms{
+%					{\Brel \in{} \BCLSi \pinj{} \BCLSii}
+%					\Bvspace	{\Battri \in{} \BCLSi \tfun{} \nat{}}
+%					\Bvspace	{\Battrii \in{} \BCLSii \tfun{} \intg{}}	
+%				}$} 
+%		}\Bvspace 
+%		$\variables{ 
+%			\Bvspace {\BCLSiii,}
+%			\Bvspace {\BSi,} 
+%			\Bvspace {\BSii}
+%			\Bvspace {\Battriii}
+%		} $ \Bhspace 
+%		$\invariants{
+%			{\BCLSiii \subseteq \BCLSi} \Bvspace
+%			{\BSi \subseteq \BCLSiii}  \Bvspace
+%			{\BSii \subseteq \BCLSiii}  \Bvspace
+%			{ partition(\BCLSiii, \BSi, \BSii)} \Bvspace
+%			{\Battriii \in \BCLSiii \tfun BOOL} \Bvspace
+%			{ \forall{}\BthisCLSiii\qdot{}(\BthisCLSiii \in{} \BSii) \limp{}} \Bvspace
+%			{~~~ (\Battriii(\BthisCLSiii) = FALSE)  }
+%		}$ \Bhspace
+%		$\event{INITIALISATION}{}{}{}{}{
+%			{\BCLSiii  \bcmeq  \emptyset{}} \Bvspace 
+%			{\BSi  \bcmeq  \emptyset{}} \Bvspace 
+%			{\BSii  \bcmeq  \emptyset{}} \Bvspace 
+%			{\Battriii  \bcmeq  \emptyset{}} \Bvspace 
+%		}$ \Bvspace
+%		$\event{\Bc}{} {\BthisCLSii , \BthisCLSiii} {
+%			{\BthisCLSii \in \BCLSii}
+%			\Bvspace	{\BthisCLSiii \notin \BCLSiii}
+%			\Bvspace	{\Brel(\BthisCLSiii) = \BthisCLSii}
+%		}{}{
+%			{\BSi \bcmeq \BSi \bunion{} \{ \BthisCLSiii \}} 
+%			\Bvspace 	{\BCLSiii \bcmeq \BCLSiii \bunion{} \{ \BthisCLSiii \}}
+%			\Bvspace 	{\Battriii \bcmeq{} \Battriii \ovl{} \{\BthisCLSiii\mapsto{}FALSE\}}
+%		}$ 
+%		\Bhspace
+%		$\event{\Be}{} {\BthisCLSiii , \Bb}{
+%			{\BthisCLSiii \in \BCLSiii}
+%			\Bvspace 	{\BthisCLSiii \in \BSi}
+%			\Bvspace 	{\Bb \in{} BOOL}
+%			\Bvspace	{\Battrii(\Brel(\BthisCLSiii)) > 0}
+%		}{}{
+%			{\BSi \bcmeq{} \BSi \setminus{} \{\BthisCLSiii\}}
+%			\Bvspace	{\BSii \bcmeq{} \BSii \bunion{} \{\BthisCLSiii\}}
+%			\Bvspace	{\Battriii(\BthisCLSiii) \bcmeq{} \Bb}
+%		}$ 
+%		%  \Bhspace $\event{\Bf}{}{}{\BSM = \BSII}{}{\BSM \bcmeq \BSMNULL}$
+%	\end{Bcode}  
+%	\caption{Event-B translation of the iUML-B example}
+%	\label{fig:eventb-translation}
+%\end{figure}
+%
+%The transition \Bc, from the initial state to \BSi also enters parent state \BCLSiii and therefore represents a constructor for the class \BCLSiii. The class method \Bc is also defined as a constructor  and automatically generates an action to initialise the instance of \Battriii with its defined initial value. The same event \Bc is also given as a method of class \BCLSii in order to generate a contextual instance \BthisCLSii which is used in an additional (manually entered) guard to define a value for the association \Brel of the super-class. The transition and method \Be is a normal method of class \BCLSiii, which is available when the contextual instance exists in \BCLSiii and \BSi, and changes state by moving the instance from \BSi to \BSii. The other guards and actions shown in this event concerning parameter \Bb and attribute \Battrii, have been added as additional guards and actions of the transition or method. These are not shown in the diagram as they are entered using the diagram's properties view. The state invariant shown in state \BSii applies to any instance while it is in that state. The \EventB version of the invariant is quantified over all instances and an antecedent added to represent the membership of \BSii. In the rest of this paper we do not explain the translation to \EventB.  
+
+%\begin{figure}[!htbp]
+%  \centering
+%  \includegraphics[width=0.6\textwidth]{figures/iumlb-SM}
+%  \caption{An example \iUMLB state-machine \Bmch{SM}}
+%  \label{fig:iumlb-sm}
+%\end{figure}
+%Here we show a translation of state-machine \Bmch{SM} using the \emph{enumeration} encoding, where each state is encoded as a constant from an enumerated set \BSMSTATES.  Variable \BSM, which represents the current state of the state-machine, is initialised to \BSI. Events \Be and \Bf change the value of \BSM according to the transitions in the state-machine.  The Event-B translation can be seen below.
+
+
+
+%\begin{Bcode}
+%%  $\carriersets{\BSMSTATES}$ \Bhspace $\constants{\BSMNULL, \BSI, \BSII}$ \Bvspace
+%%  $\axioms{\partition(\BSMSTATES, \BSMNULL, \BSI, \BSII)}$ \Bvspace 
+%  $\variables{ \Bvrb{CLS3}, \Bvrb{S1}, \Bvrb{S2}}$ \Bhspace $\invariants{\BSM \in \BSMSTATES}$ \Bvspace
+%  $\event{INITIALISATION}{}{}{}{}{\BSM \bcmeq \BSI}$ \Bhspace
+%  $\event{\Be}{}{}{\BSM = \BSI}{}{\BSM \bcmeq \BSII}$ \Bhspace
+%  $\event{\Bf}{}{}{\BSM = \BSII}{}{\BSM \bcmeq \BSMNULL}$
+%\end{Bcode}
+
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "VLANTAG_NASA17"
+%%% End: 
+
+
+%\subsection{Tooling}\
+
+The iUML-B tooling consists of a collection of plug-ins for the Rodin toolset. 
+The plug-ins provide several different kinds of modelling diagrams, which enables diagrammatic models to be added as an extension to an Event-B machine. 
+A translator is provided to generate Event-B elements in the machine that implements the behaviour expressed in the iUML-B diagrams. 
+Hence the iUML-B model contributes additional variables, invariants, guards and actions to the existing Event-B model and its events.
+As Rodin is an Eclipse based tool, so is iUML-B. 
+The iUML-B  tooling is based on the Event-B EMF framework, Event-B EMF Extensions and Generic Diagrams plug-ins.

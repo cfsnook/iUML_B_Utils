@@ -1,0 +1,68 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[preview=false]{standalone}
+% %%%% Define new conditional \ifplastex
+% %%%% This ensure that the file complied normally without plasTeX.
+\usepackage{plastex}
+
+\ifplastex\else
+\usepackage{standalone} %%%% Only load standalone when not in plasTeX
+\standalonetrue
+\fi
+
+% % Package for typesetting URLs
+\usepackage{url}
+
+\usepackage{import}
+
+\usepackage{iumlb}
+
+\usepackage{multirow}
+ 
+ % Package for including figures
+\usepackage{graphicx}
+
+% Package for sub-floats (e.g. figures)
+\usepackage{subfig}
+
+% % Title
+\title{iUML-B User Manual} 
+
+% % Author
+\author{Colin Snook\\University of Southampton}
+
+% % Date
+\date{%
+  Version 0.0.1\\%
+  \today%
+}
+
+\begin{document}
+\ifplastex%
+\maketitle% Make title if in plasTeX mode.
+\else%
+ \ifstandalone%
+ \maketitle % Make title if in standalone mode.
+ \else%
+ \fi%
+\fi%
+
+This section covers general facilities and concepts available for all iUML-B diagrams.
+
+\input{iuml-b-introduction}
+
+\input{iuml-b-getting_started}
+
+\input{iuml-b-concepts}
+
+%\input{iuml-b-tasks}
+%
+%\input{iuml-b-reference}
+%
+%\input{iuml-b-refactoring}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

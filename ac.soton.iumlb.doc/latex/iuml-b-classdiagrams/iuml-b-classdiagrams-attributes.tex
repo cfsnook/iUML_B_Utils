@@ -1,0 +1,23 @@
+\section{Class Attributes}
+\label{sec:classdiagrams-attributes}
+
+
+
+\paragraph{Initial Value } 
+The initial value field is a Rodin Keyboard text field. 
+The string in the text field is used as the intialisation value for the owning class attribute (or association) but can be interreted in several ways:
+\begin{itemize}
+	\item If the attribute is owned by a variable instance class, this field is currently ignored. (It should be used in a constructor).
+	\item If the attribute elaborates a constant, this field is ignored. 
+	\item If the attribute elaborates a variable, an action is added to the Initialisation event to intialise the attribute. as follows:
+	\begin{itemize}
+		\item if the text field begins with one of the Event-B assignment operators it is used to assign to the complete attribute relation (i.e. expression = attribute.name+initialValue.String)
+		\item otherwise the text is assumed to contain the value to be assigned to each and every instance \\(i.e. expression = attribute.name+":="+class.name+"X"+initialValue.String)
+	\end{itemize}	
+\end{itemize}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "iuml-b-classdiagrams-user_manual"
+%%% End:

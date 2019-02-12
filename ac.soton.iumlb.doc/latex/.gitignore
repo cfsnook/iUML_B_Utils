@@ -1,0 +1,10 @@
+user_manual.pdf
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.paux
+*.rel
+*.synctex.gz
+*.toc

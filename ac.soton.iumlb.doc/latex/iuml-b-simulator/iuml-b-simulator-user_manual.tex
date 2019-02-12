@@ -1,0 +1,58 @@
+\documentclass[a4paper,10pt]{article}
+%\documentclass[preview=false]{standalone}
+% %%%% Define new conditional \ifplastex
+% %%%% This ensure that the file complied normally without plasTeX.
+\usepackage{plastex}
+
+\ifplastex\else
+\usepackage{standalone} %%%% Only load standalone when not in plasTeX
+\standalonetrue
+\fi
+
+% % Package for typesetting URLs
+\usepackage{url}
+
+\usepackage{import}
+
+% % Title
+\title{iUML-B Simulator User Manual} 
+
+% % Author
+\author{Colin Snook\\University of Southampton}
+
+% % Date
+\date{%
+  Version 0.0.1\\%
+  \today%
+}
+
+\begin{document}
+\ifplastex%
+\maketitle% Make title if in plasTeX mode.
+\else%
+ \ifstandalone%
+ \maketitle % Make title if in standalone mode.
+ \else%
+ \fi%
+\fi%
+
+The iUML-B simulator..... 
+
+\input{iuml-b-simulator-getting_started}
+
+\input{iuml-b-simulator-concepts}
+
+\input{iuml-b-simulator-tasks}
+
+\input{iuml-b-simulator-reference}
+
+\input{iuml-b-simulator-samples}
+
+%\input{iuml-b-simulator-legal}
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:

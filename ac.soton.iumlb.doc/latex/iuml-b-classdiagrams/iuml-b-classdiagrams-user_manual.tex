@@ -46,8 +46,49 @@
 	\fi%
 	\fi%
 	
-	This section will cover iUML-B Class diagrams.
+iUML-B Class diagrams are used to visualise and model data in an entity relationship style.
+Class Diagrams provide a way to model data as sets (classes) of objects.
+Elements of the class diagram (class, attribute, association) \emph{elaborate} (i.e. link to) a data item (Carrier Set, Constant, Variable) in the Event-B.
+The class diagram translator generates properties such as axioms or invariants in the relevant context or machine.
+Linking to an existing data element, rather than create a new one, allows more flexibility.
+The elaborated data item must be in-scope via sees or extends as shown in Figs.~\ref{fig:CDContainment1}, \ref{fig:CDContainment2} and 	\ref{fig:CDContainment3}.
 	
+	\begin{figure}[!htbp]
+		\centering
+		\ifplastex
+		\includegraphics[width=500]{figures/containment_1.png}
+		\else
+		\includegraphics[width=.5\textwidth]{figures/containment_1.png}
+		\fi
+		\caption{Class Diagram contained in a base level Context}
+		\label{fig:CDContainment1}
+	\end{figure}
+	
+	
+	\begin{figure}[!htbp]
+		\centering
+		\ifplastex
+		\includegraphics[width=500]{figures/containment_2.png}
+		\else
+		\includegraphics[width=.5\textwidth]{figures/containment_2.png}
+		\fi
+		\caption{Class Diagram contained in an extended Context}
+		\label{fig:CDContainment2}
+	\end{figure}
+	
+	
+	\begin{figure}[!htbp]
+		\centering
+		\ifplastex
+		\includegraphics[width=500]{figures/containment_3.png}
+		\else
+		\includegraphics[width=.5\textwidth]{figures/containment_3.png}
+		\fi
+		\caption{Class Diagram contained in a Machine}
+		\label{fig:CDContainment3}
+	\end{figure}
+
+%% subsections for each element type in a class diagram
 	
 	\input{iuml-b-classdiagrams-classes}
 	%

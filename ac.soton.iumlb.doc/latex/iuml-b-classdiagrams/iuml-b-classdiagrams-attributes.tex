@@ -1,7 +1,14 @@
 \section{Class Attributes}
 \label{sec:classdiagrams-attributes}
 
+Classes may have attributes to model properties that the instances of that class exhibit.
+Attributes are equivalent to associations except that the target set is usually a simple set that is not appropriate to draw as a class.
+Also attributes default to total functions (\code{Total = true, Functional = true}) as it is usual for all instances to have a single value for an attribute.
 
+The \code{Type} of an attribute is given by a string in the properties field.
+The type may a built in type such as \code{INT}, \code{NAT}, \code{BOOL} or be an expression that identifies a set of values in the model (e.g. name of a data item that is a set).
+ 
+The 
 
 \paragraph{Initial Value } 
 The initial value field is a Rodin Keyboard text field. 
@@ -15,7 +22,6 @@ The string in the text field is used as the intialisation value for the owning c
 		\item otherwise the text is assumed to contain the value to be assigned to each and every instance \\(i.e. expression = attribute.name+":="+class.name+"X"+initialValue.String)
 	\end{itemize}	
 \end{itemize}
-
 
 %%% Local Variables:
 %%% mode: latex

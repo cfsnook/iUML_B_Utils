@@ -48,10 +48,10 @@
 	
 iUML-B Class diagrams are used to visualise and model data in an entity relationship style.
 Class Diagrams provide a way to model data as sets (classes) of objects.
-Elements of the class diagram (class, attribute, association) \emph{elaborate} (i.e. link to) a data item (Carrier Set, Constant, Variable) in the Event-B.
+Elements of the class diagram (\code{class}, \code{attribute}, \code{association}) \code{elaborate} (i.e. link to) a data item (\code{Carrier Set}, \code{Constant}, \code{Variable}) in the Event-B.
 The class diagram translator generates properties such as axioms or invariants in the relevant context or machine.
 Linking to an existing data element, rather than create a new one, allows more flexibility.
-The elaborated data item must be in-scope via sees or extends as shown in Figs.~\ref{fig:CDContainment1}, \ref{fig:CDContainment2} and 	\ref{fig:CDContainment3}.
+The elaborated data item must be in-scope via \code{sees} or \code{extends} as shown in Figs.~\ref{fig:CDContainment1}, \ref{fig:CDContainment2} and 	\ref{fig:CDContainment3}.
 	
 	\begin{figure}[!htbp]
 		\centering
@@ -88,19 +88,57 @@ The elaborated data item must be in-scope via sees or extends as shown in Figs.~
 		\label{fig:CDContainment3}
 	\end{figure}
 
+The class diagram editor provides a canvas on which to place and populate classes and create relationships between them.
+New diagram elements can either be created and populated by selecting the appropriate tool in the palette, or by using the popup tool that appears whenever the cursor is first paused on the canvas or over a diagram node. For example, Fig.~\ref{fig:CDpopups} shows the popup that appears when the cursor is hovered over a \code{class}. 
+Similarly, connectors between classes can be drawn using the palette tools or by using the connector handles that appear when the cursor is hovered over a \code{class} (also shown in Fig.~\ref{fig:CDpopups}).
+
+	\begin{figure}[!htbp]
+		\centering
+		\ifplastex
+		\includegraphics[width=300]{figures/popups.png}
+		\else
+		\includegraphics[width=.3\textwidth]{figures/popups.png}
+		\fi
+		\caption{Class Diagram popups and connectors}
+		\label{fig:CDpopups}
+	\end{figure}
+
+The class diagram editor provides a context dependent property view which shows and allows editing of the currently selected diagram element.
+In fact, much of the modelling takes place on the property sheets rather than the diagram canvas.
+All property views default to a top level tab called \code{Overview} which contains the main properties of the diagram element.
+This is followed by several tabs that can be used to view the relationships and children of that element.
+Where appropriate these tabs allow the relationships and children to be re-ordered in the model.
+This is reflected in the translation and can be useful when the order is significant in the generated Event-B.
+Finally, following this variable set of tabs, all elements have the following tabs:
+\begin{itemize}
+	\item \code{model} - a low level access to all fields of the model including those that are not usually exposed to the user.
+	\item \code{Rulers \& Grid} - controls that affect the diagram user interface.
+	\item \code{Appearance} - controls that affect the rendering of the selected element in the diagram (e.g. colour, font, line style).
+\end{itemize}
+The more specific properties views for a particular element type will be described in the appropriate sub-sections that follow. 
+
+The property sheet for the class diagram canvas contains the diagram name and a comment field in the \code{Overview} tab and has tabs that list the main details of its classes and associations in a re-orderable table.
+
+\emph{Tip: The tab for classes is particularly important since the translation order can affect guard and invariant ordering which is significant for typing and proving.}
+
+
 %% subsections for each element type in a class diagram
 	
 	\input{iuml-b-classdiagrams-classes}
 	%
-	\input{iuml-b-classdiagrams-attributes}
+	\input{iuml-b-classdiagrams-supertypes}
 	%
 	\input{iuml-b-classdiagrams-associations}
+	%	
+	\input{iuml-b-classdiagrams-attributes}
 	%
 	\input{iuml-b-classdiagrams-methods}
 	%
 	\input{iuml-b-classdiagrams-constraints}
 	%
 	\input{iuml-b-classdiagrams-statemachines}
+	%
+	\input{iuml-b-classdiagrams-refinement}
 	
 \end{document}
 
